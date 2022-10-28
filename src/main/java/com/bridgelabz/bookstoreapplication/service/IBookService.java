@@ -15,4 +15,6 @@ public interface IBookService {
     BookData updateBookData(int bookId, BookDTO bookDTO);
 
     void deleteBookData(int bookId);
+
+    void updateBookQuantity(int bookId,int bookQuantity);
 }
