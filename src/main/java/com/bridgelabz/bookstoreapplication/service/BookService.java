@@ -41,4 +41,11 @@ public class BookService implements IBookService{
         BookData bookData = this.getBookDataByID(bookId);
         bookRepository.delete(bookData);
     }
+
+    @Override
+    public void updateBookQuantity(int bookId,int bookQuantity) {
+        BookData bookData = this.getBookDataByID(bookId);
+        bookData.setBookQuantity(bookQuantity);
+        bookRepository.save(bookData);
+    }
 }
