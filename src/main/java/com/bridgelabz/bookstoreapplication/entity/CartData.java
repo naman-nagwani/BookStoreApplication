@@ -1,11 +1,9 @@
 package com.bridgelabz.bookstoreapplication.entity;
 
-import com.bridgelabz.bookstoreapplication.DTO.CartDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
