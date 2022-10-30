@@ -26,13 +26,25 @@ public class UserLoginExceptionHandler {
     }
 
     @ExceptionHandler(JWTDecodeException.class)
-    public ResponseEntity<ResponseDTO> handleEmployeePayrollException(JWTDecodeException exception) {
+    public ResponseEntity<ResponseDTO> handleJWTDecodeException(JWTDecodeException exception) {
         ResponseDTO responseDTO = new ResponseDTO("Invalid Token Provided",exception.getMessage());
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserLoginException.class)
-    public ResponseEntity<ResponseDTO> handleEmployeePayrollException(UserLoginException exception) {
+    public ResponseEntity<ResponseDTO> handleUserLoginException(UserLoginException exception) {
+        ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request",exception.getMessage());
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BookException.class)
+    public ResponseEntity<ResponseDTO> handleBookException(BookException exception) {
+        ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request",exception.getMessage());
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CartException.class)
+    public ResponseEntity<ResponseDTO> handleCartException(CartException exception) {
         ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request",exception.getMessage());
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
