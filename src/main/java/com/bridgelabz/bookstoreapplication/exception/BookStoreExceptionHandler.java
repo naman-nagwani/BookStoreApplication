@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 @Slf4j
-public class UserLoginExceptionHandler {
+public class BookStoreExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
@@ -46,6 +46,12 @@ public class UserLoginExceptionHandler {
     @ExceptionHandler(CartException.class)
     public ResponseEntity<ResponseDTO> handleCartException(CartException exception) {
         ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request",exception.getMessage());
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(OrderException.class)
+    public ResponseEntity<ResponseDTO> handleOrderException(OrderException exception) {
+        ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request", exception.getMessage());
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
