@@ -33,14 +33,14 @@ public class CartController {
         return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/updatequantity")
-    public ResponseEntity<ResponseDTO> updateCartQuantity(@RequestParam int cartId,@RequestParam int newQuantity) {
-        CartData cartData = cartService.updateQuantity(cartId,newQuantity);
+    @PutMapping("/updatequantity")
+    public ResponseEntity<ResponseDTO> updateCartQuantity(@RequestHeader String token,@RequestHeader int cartId,@RequestHeader int newQuantity) {
+        CartData cartData = cartService.updateQuantity(token,cartId,newQuantity);
         ResponseDTO respDTO = new ResponseDTO("Quantity updated successfully", cartData);
         return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/allcartitemsforuser")
+    @GetMapping("/allcartitemsforuser")
     public ResponseEntity<ResponseDTO> getAllCartItemsForUser(@RequestHeader String token) {
         List<BookData> bookDataList = cartService.getAllCartItemsForUser(token);
         ResponseDTO respDTO = new ResponseDTO("All items for user : ", bookDataList);

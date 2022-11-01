@@ -11,7 +11,7 @@ public interface ICartService {
 
     void removeFromCart(int id);
 
-    CartData updateQuantity(int cartId, int newQuantity);
+    CartData updateQuantity(String token, int cartId, int newQuantity);
 
     List<BookData> getAllCartItemsForUser(String token);
 

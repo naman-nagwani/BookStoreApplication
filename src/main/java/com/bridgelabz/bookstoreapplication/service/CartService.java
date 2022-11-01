@@ -46,13 +46,17 @@ public class CartService implements ICartService{
     }
 
     @Override
-    public CartData updateQuantity(int cartId, int newQuantity) {
-        CartData cartData = cartRepository.findById(cartId).orElseThrow(()-> new CartException("Cart with Id "+cartId+" not found"));
-        cartData.setQuantity(newQuantity);
-        BookData bookData = bookRepository.findById(cartData.getBookData().getId()).orElseThrow(()-> new CartException("Book not found"));
-        cartData.setTotalPrice(cartData.getQuantity()*bookData.getBookPrice());
-        cartRepository.save(cartData);
-        return cartData;
+    public CartData updateQuantity(String token, int cartId, int newQuantity) {
+        UserLoginData userLoginData = userLoginRepository.findById(jwtToken.decodeToken(token)).orElseThrow(()->new CartException("User not found"));
+        if (userLoginData!=null) {
+            CartData cartData = cartRepository.findById(cartId).orElseThrow(() -> new CartException("Cart with Id " + cartId + " not found"));
+            cartData.setQuantity(newQuantity);
+            BookData bookData = bookRepository.findById(cartData.getBookData().getId()).orElseThrow(() -> new CartException("Book not found"));
+            cartData.setTotalPrice(cartData.getQuantity() * bookData.getBookPrice());
+            cartRepository.save(cartData);
+            return cartData;
+        } else
+            return null;
     }
 
     @Override
